@@ -17,5 +17,5 @@ python .git/hooks/pre-commit-XML.py
 git add --update
 
 # this updates the commit for any files added by the scripts within the tracked files/directories
-git add -- ./*.VBA
-git add -- ./*.XML
+git add -- ./*.VBA || :
+git add -- ./*.XML || :
