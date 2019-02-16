@@ -1,0 +1,49 @@
+# .gitignore file setup for standard Excel template workflow
+# 1 - Allow adding only files in root directory
+# 2 - Exclude adding typical temp/backup/system files
+# 3 - Exclude adding all subdirectories except extracted VBA and XML directories
+
+# last updated 16/2/2019
+
+# exclude all subdirectories (& content) unless specifically allowed
+**/*
+
+# include anything in the root directory of the repository
+!/*
+
+# exclude backup directories
+**/Dev Backup/
+
+# exclude version backup directories (including current versions) 
+**/Version*/
+
+# exclude superceded development directory
+**/SS
+**/ss
+
+# include extracted *.VBA & *.XML directories & contents
+!/*.XML/*
+!/*.VBA/*
+
+# include Excel files in the root directory of the repository
+!/*.xl*
+
+# exclude temporary files
+~$*
+~$*.xl*
+*.tmp
+*.bak
+
+# exclude Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# exclude windows folder config file
+Desktop.ini
+
+# exclude Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# exclude Mac file
+.DS_Store
+
