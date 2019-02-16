@@ -11,7 +11,7 @@ Some Excel test files with varying VBA and XML content are provided to test the 
 
 My first time using python so if it doesn't work for you, I'm probably not going to be of much help. But if its any consolation its exactly what I was after for my own workflow.
 
-### A bit about my excel workflow
+### A bit about my Excel workflow
 .gitignore file is setup to only commit files within the root directory of the repository, thats how I roll with Excel. More to follow on this I guess so you can customise the scripts to your own workflow.
 
 ### Prerequisites
@@ -19,6 +19,7 @@ python 3.x (My first time using python so no idea if it will work under python 2
 
 oletools (for extracting the VBA)
 
+To get the VBA script working you'll need to enable programmatic access to the VBA project within Excel. You can do this by going -> File -> Options -> Trust Center -> Trust Center Settings -> Macro Settings -> activate checkmark on 'Trust access to the VBA project object model' 
 
 ### Next steps...
 Make/steal/beg/borrow some way to import the extracted modules back into Excel file.
