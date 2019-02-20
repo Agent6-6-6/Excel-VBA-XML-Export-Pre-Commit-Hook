@@ -8,7 +8,6 @@
 
 import os
 import shutil
-import time
 from oletools.olevba3 import VBA_Parser
 
 # list excel extensions that will be processed and have VBA modules extracted
