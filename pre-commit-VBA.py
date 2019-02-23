@@ -68,13 +68,11 @@ def extract_VBA_files(workbook_name):
         else:
             lines = decoded_content.split('\n')
         if lines:
-            # check if module type is a CLASS (.cls) or FORM (.frm)
-            if module_name[-4:] in ['.cls', '.frm']:
-                # CLASS (.cls) & FORM (.frm) modules have more non-code lines at the beginning,
-                # these headers can be left or removed based on the keep_header variable
-                content = lines if keep_header else lines[8:]
-            else:
-                content = lines if keep_header else lines[1:]
+            # Modules can have a variable number of non-code lines at the beginning,
+            # these headers can be left or removed based on the keep_header variable.
+            # All headers begin with 'Attribute VB_' string
+            content = lines if keep_header else lines[decoded_content.count('Attribute VB_') :]
+
             if content and content[-1] == '':
                 content.pop(len(content) - 1)
                 # check for empty modules (not processed if empty, modules won't be empty if headers are kept even if there is no content)
