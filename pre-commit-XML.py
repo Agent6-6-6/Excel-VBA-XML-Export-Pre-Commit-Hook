@@ -14,7 +14,7 @@ import shutil
 from zipfile import ZipFile
 
 # list excel extensions that will be processed and have VBA modules extracted
-excel_file_extensions = ('xlsb', 'xls', 'xlsx', 'xlsm', 'xla', 'xlt', 'xlam', 'xltm')
+excel_file_extensions = ('xlsb', 'xlsx', 'xlsm', 'xlam', 'xltm')
 
 # process Excel files in this directory (not recursive to subdirectories)
 directory = '.'
