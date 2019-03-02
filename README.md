@@ -1,3 +1,9 @@
+[![HitCount](http://hits.dwyl.io/Agent6-6-6/Excel-VBA-XML-Export-Pre-Commit-Hook.svg)](http://hits.dwyl.io/Agent6-6-6/Excel-VBA-XML-Export-Pre-Commit-Hook)
+[![GitHub issues](https://img.shields.io/github/issues-raw/Agent6-6-6/Excel-VBA-XML-Export-Pre-Commit-Hook.svg?color=RED&style=flat-square)](https://GitHub.com/issues/Agent6-6-6/Excel-VBA-XML-Export-Pre-Commit-Hook)
+[![GitHub issues-closed](https://img.shields.io/github/issues-closed-raw/Agent6-6-6/Excel-VBA-XML-Export-Pre-Commit-Hook.svg?color=brightgreen&style=flat-square)](https://GitHub.com/Agent6-6-6/Excel-VBA-XML-Export-Pre-Commit-Hook/issues?q=is%3Aissue+is%3Aclosed)
+[![Black Code](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/ambv/Black)
+
+
 # Excel VBA & XML Export Pre-Commit Hook
 
 To be added to further & updated when I get a chance to add more detail!
