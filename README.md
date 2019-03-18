@@ -6,8 +6,6 @@
 
 # Excel VBA & XML Export Pre-Commit Hook
 
-To be added to further & updated when I get a chance to add more detail!
-
 ### What do these Pre-commit scripts do?
 When you commit an Excel file, these scripts extract all VBA normal modules, class modules & forms, and the customUI.xml & customUI14.xml files. 
 
@@ -32,7 +30,15 @@ Some Excel test files with varying VBA and XML content are provided to test the 
 My first time using python so if it doesn't work for you, I'm probably not going to be of much help. But if its any consolation its exactly what I was after for my own workflow, want it to do something different then adapt it to your own needs.
 
 ### A bit about my Excel workflow
-.gitignore file is setup to only commit files within the root directory of the repository, thats how I roll with Excel. More to follow on this I guess so you can customise the scripts to your own workflow.
+The included .gitignore file is setup to only commit files within the root directory of the repository, thats how I roll with Excel.
+
+I usually store my excel spreadsheet templates in a filename format like `templatename - Rev X.xxx.xltm` in their own repository/directory. This helps me identify at a glance templates based on revision. I usually keep things like verification information (hand calculations/example outputs), other resources, etc in further subdirectories so all of the relevant information is together with the template. These sub-directories are not tracked by git.
+
+I also have an addin which contains generic code which can be used within individual templates, this approach is taken so that if I update VBA code (say to reflect changes in structural engineering standards/design code equations) then this updated code is available to all workbooks that used the previous version of this VBA code (no updating of individual templates VBA code required). This centralised approach to storing common code saves considerable development time. The addin is distributed to users of my templates (stored/run from network drive).
+
+The addin/templates contains a few custom ribbon tabs that contain buttons for executing custom code and groups together existing excel ribbon functions in a manner that reduces development time, especially with respect to formatting spreadsheets to styles consistent with company policies, etc.
+
+If I am making small changes I'll just do it in a master branch and commit to github to update the code modules stored on github, if doing major changes I'll do a branch until things are finalised. You just need to keep in mind because of the binary nature of the Excel files, you cannot work in two branches as there is no way to merge the code from two competing branches into the excel file itself. This pre-commit only extracts the code as its stored within a file. If changes ar emade in both branches then you need to reconcile them by hand before committing/merging one of the branches 
 
 ### Prerequisites
 python 3.x (My first time using python so no idea if it will work under python 2.x, test it and let me know)
@@ -42,6 +48,4 @@ oletools (for extracting the VBA)
 To get the VBA script working you'll need to enable programmatic access to the VBA project within Excel. You can do this by going -> File -> Options -> Trust Center -> Trust Center Settings -> Macro Settings -> activate checkmark on `Trust access to the VBA project object model`
 
 ### Next steps...
-Make/steal/beg/borrow some way to import the extracted modules and customUI xml files back into an Excel file.
-
-Make a better readme (obviously)......
+Make/steal/beg/borrow some way to import the extracted modules and customUI xml files back into an Excel file... in progress
