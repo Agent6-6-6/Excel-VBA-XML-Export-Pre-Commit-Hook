@@ -38,7 +38,7 @@ I also have an addin which contains generic code which can be used within indivi
 
 The addin/templates contains a few custom ribbon tabs that contain buttons for executing custom code and groups together existing excel ribbon functions in a manner that reduces development time, especially with respect to formatting spreadsheets to styles consistent with company policies, etc.
 
-If I am making small changes I'll just do it in a master branch and commit to github to update the code modules stored on github, if doing major changes I'll do a branch until things are finalised. You just need to keep in mind because of the binary nature of the Excel files, you cannot work in two branches as there is no way to merge the code from two competing branches into the excel file itself. This pre-commit only extracts the code as its stored within a file. If changes ar emade in both branches then you need to reconcile them by hand before committing/merging one of the branches 
+If I am making small changes I'll just do it in a master branch and commit to github to update the code modules stored on github, if doing major changes I'll do a branch until things are finalised. You just need to keep in mind because of the binary nature of the Excel files, you cannot work in two branches as there is no way to merge the code from two competing branches into the excel file itself. This pre-commit only extracts the code as its stored within a file. If changes are made in both branches then you need to reconcile them by hand before committing/merging one of the branches.
 
 ### Prerequisites
 python 3.x (My first time using python so no idea if it will work under python 2.x, test it and let me know)
