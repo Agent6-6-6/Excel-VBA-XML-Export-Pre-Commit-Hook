@@ -1,7 +1,7 @@
 '''
 pre-commit-VBA.py
 
-Last updated 30/05/2020
+Last updated 30/07/2020
 
 Script extracts VBA modules, forms and class modules into a new 'FILENAME.VBA' subdirectory within the repository root folder (by default)
 
@@ -11,6 +11,8 @@ With the standard .gitignore entries, only Excel files located within the root d
 import os
 import shutil
 import win32com.client
+import time
+import traceback
 
 
 def init_Xl(file_path):
@@ -123,36 +125,68 @@ def extract_VBA_files(workbook_name):
         close_Xl(Xl_app, Xl_wb)
 
 
-# list excel extensions that will be processed and have VBA modules extracted
-excel_file_extensions = ('xlsb', 'xls', 'xlsx', 'xlsm', 'xla', 'xlt', 'xlam', 'xltm')
+try:
+    # list excel extensions that will be processed and have VBA modules extracted
+    excel_file_extensions = ('xlsb', 'xls', 'xlsx', 'xlsm', 'xla', 'xlt', 'xlam', 'xltm')
 
-# process Excel files in root directory (not recursive to subdirectories)
-directory = os.getcwd() + '//'
+    # process Excel files in root directory (not recursive to subdirectories)
+    directory = os.getcwd() + '//'
 
-# String to append to end of subdirectory
-VBA_suffix = '.VBA'
+    # String to append to end of subdirectory
+    VBA_suffix = '.VBA'
 
-# String to remove from end of filename
-Rev_tag = ' - Rev '
+    # String to remove from end of filename
+    Rev_tag = ' - Rev '
 
-# remove all previous '.VBA' directories including contents
-for directories in os.listdir(directory):
-    if directories.endswith(VBA_suffix):
-        shutil.rmtree(directories)
+    # remove all previous '.VBA' directories including contents
+    for directories in os.listdir(directory):
+        if directories.endswith(VBA_suffix):
+            for x in range(0, 5):  # try 5 times
+                try:
+                    shutil.rmtree(directories)
+                    err = False
+                except Exception:
+                    err = True
+                    with open("precommit_exceptions_log.log", "a") as logfile:
+                        traceback.print_exc(file=logfile)
+                    pass
 
-# loop through files in given directory and process those that are Excel files (excluding temporary Excel files ~$*)
-for filenames in os.listdir(directory):
-    if filenames.endswith(excel_file_extensions):
-        # skip temporary excel files ~$*.*, otherwise process Excel file and extract VBA modules
-        if not filenames.startswith('~$'):
-            # extract VBA modules
-            extract_VBA_files(filenames)
+                if err:
+                    time.sleep(2)  # wait for 2 seconds before trying to remove directory again
+                else:
+                    break
 
-# print trailing line to separate output from multiple files
-print()
+    # loop through files in given directory and process those that are Excel files (excluding temporary Excel files ~$*)
+    for filenames in os.listdir(directory):
+        if filenames.endswith(excel_file_extensions):
+            # skip temporary excel files ~$*.*, otherwise process Excel file and extract VBA modules
+            if not filenames.startswith('~$'):
+                # extract VBA modules
+                extract_VBA_files(filenames)
 
-# loop through directories & remove '.VBA' directory if nothing was extracted and directory is empty
-for directories in os.listdir(directory):
-    if directories.endswith(VBA_suffix):
-        if not os.listdir(directories):
-            os.rmdir(directories)
+    # print trailing line to separate output from multiple files
+    print()
+
+    # loop through directories & remove '.VBA' directory if nothing was extracted and directory is empty
+    for directories in os.listdir(directory):
+        if directories.endswith(VBA_suffix):
+            if not os.listdir(directories):
+                for x in range(0, 5):  # try 5 times
+                    try:
+                        os.rmdir(directories)
+                        err = False
+                    except Exception:
+                        err = True
+                        with open("precommit_exceptions_log.log", "a") as logfile:
+                            traceback.print_exc(file=logfile)
+                        pass
+
+                    if err:
+                        time.sleep(2)  # wait for 2 seconds before trying to remove directory again
+                    else:
+                        break
+
+except Exception:
+    with open("precommit_exceptions_log.log", "a") as logfile:
+        traceback.print_exc(file=logfile)
+    raise
