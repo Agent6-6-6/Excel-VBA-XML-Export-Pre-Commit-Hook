@@ -8,6 +8,10 @@
 ### What do these Pre-commit scripts do?
 When you commit an Excel file, these scripts extract all VBA normal modules, class modules & forms, and the customUI.xml & customUI14.xml files.
 
+### Blog post explaining use/setup
+See this blog post link for further information
+[Excel…. Version control…. Git the hell out of here!](https://engineervsheep.com/2020/excel-git/)
+
 ### Why did I create these scripts
 Basically I was looking for a way to automate a way of using the version control offered by Git/Github with Excel files and the VBA code modules stored within an Excel file.
 
